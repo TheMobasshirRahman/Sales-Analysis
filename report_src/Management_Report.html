@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Management Report</title>
+<style>
+  @page { size: A4; margin: 11mm 13mm; }
+  * { box-sizing: border-box; }
+  body { font-family: Arial, Helvetica, sans-serif; color: #222; font-size: 9.6pt; line-height: 1.36; margin: 0; }
+  header { background: #1F4E79; color: #fff; padding: 9px 14px; }
+  header h1 { margin: 0; font-size: 16pt; }
+  header p { margin: 2px 0 0; font-size: 8.5pt; opacity: .9; }
+  .meta { font-size: 8.5pt; color: #444; margin: 6px 0 8px; }
+  .kpis { display: grid; grid-template-columns: repeat(6, 1fr); gap: 5px; margin-bottom: 8px; }
+  .kpi { background: #DCE6F1; padding: 6px 4px; text-align: center; }
+  .kpi.alert { background: #FBE5D6; }
+  .kpi b { display: block; font-size: 13pt; color: #1F4E79; }
+  .kpi.alert b { color: #C0392B; }
+  .kpi span { font-size: 7.3pt; color: #555; text-transform: uppercase; letter-spacing: .3px; }
+  h2 { font-size: 10.5pt; color: #1F4E79; border-bottom: 1.5px solid #E07A1F; padding-bottom: 2px; margin: 8px 0 4px; }
+  ul, ol { margin: 0; padding-left: 17px; }
+  li { margin-bottom: 2.5px; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .charts { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 4px; }
+  .charts img { width: 100%; border: 1px solid #ddd; }
+  table { border-collapse: collapse; width: 100%; font-size: 8.2pt; }
+  th { background: #1F4E79; color: #fff; text-align: left; padding: 2px 5px; }
+  td { border-bottom: 1px solid #ddd; padding: 2px 5px; vertical-align: top; }
+  footer { font-size: 7.5pt; color: #777; margin-top: 6px; border-top: 1px solid #ddd; padding-top: 3px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Sales Performance Review — FY 2025</h1>
+  <p>One-page management summary · Prepared from BCA_Data_Analytics_Test_Project.xlsx (Orders, Customers, Products)</p>
+</header>
+
+<div class="meta"><b>Objective:</b> Assess 2025 sales and profitability, identify risks, and recommend actions.
+<b>Scope:</b> 1,198 validated orders · 80 customers · 25 products · 5 salespeople · 8 cities.</div>
+
+<div class="kpis">
+  <div class="kpi"><b>₹2.31 Cr</b><span>Net sales</span></div>
+  <div class="kpi"><b>₹37.9 L</b><span>Profit</span></div>
+  <div class="kpi"><b>16.4%</b><span>Profit margin</span></div>
+  <div class="kpi"><b>₹19,300</b><span>Avg order value</span></div>
+  <div class="kpi"><b>₹15.5 L</b><span>Discounts given</span></div>
+  <div class="kpi alert"><b>₹23.5 L</b><span>Overdue receivables</span></div>
+</div>
+
+<h2>Key findings</h2>
+<ol>
+  <li><b>Discounts are the main cause of lost profit.</b> Margin falls from 22.2% on undiscounted orders to 7.6% when the discount is above 10%. <b>All 23 loss-making orders</b> had discounts above 10%, including one order at 35% that lost ₹4,578.</li>
+  <li><b>₹71.8 L (31% of sales) is still uncollected:</b> ₹48.3 L is pending and ₹23.5 L is overdue across 126 orders. Neha (29) and Sana (27) have the most overdue orders.</li>
+  <li><b>Hardware drives volume (36.6% of sales), while Plumbing (19.8%) and Electrical (18.9%) earn the best margins.</b> Safety has a margin of only 9.5%. Product 4 is the 5th-largest product by sales but earns just 5.6%.</li>
+  <li><b>Sales are steady but not growing.</b> Monthly sales range from ₹15.3 L to ₹22.1 L. May was the peak and July the lowest month (−25% vs June), and dips repeat in Feb–Mar and September.</li>
+  <li><b>The customer base is healthy and diversified.</b> The top 20% of customers bring in only 29% of sales, and Retailers make up 51%. Varanasi is the largest city (₹41.2 L). Amit is the top salesperson (₹52.5 L, 16.7% margin).</li>
+</ol>
+
+<div class="charts">
+  <img src="../charts/07_discount_margin.png" alt="Profit margin by discount band">
+  <img src="../charts/02_category.png" alt="Net sales and profit by category">
+</div>
+
+<div class="two">
+  <div>
+    <h2>Recommendations</h2>
+    <ol>
+      <li><b>Cap discounts at 10%.</b> Anything higher should need manager approval. This alone would have prevented every loss-making order in 2025.</li>
+      <li><b>Start a collections drive</b> on the ₹23.5 L overdue amount, beginning with the top 10 overdue customers (about ₹8.9 L). Link part of salesperson incentives to collections.</li>
+      <li><b>Reprice or renegotiate supplier costs</b> for Product 4, 1, 2, 18 and the Safety range, and push higher-margin Plumbing and Electrical products.</li>
+      <li><b>Run targeted promotions</b> in slow months (Feb–Mar, Jul, Sep) to smooth out sales.</li>
+    </ol>
+  </div>
+  <div>
+    <h2>Data quality actions</h2>
+    <table>
+      <tr><th>Issue</th><th>Action</th></tr>
+      <tr><td>O00056: product P999 does not exist, and sales values are blank</td><td>Removed</td></tr>
+      <tr><td>O00011: quantity is −3</td><td>Removed</td></tr>
+      <tr><td>O00041: customer C999 does not exist</td><td>Kept as “Unknown”</td></tr>
+      <tr><td>O00026: 35% discount outlier</td><td>Kept and flagged</td></tr>
+      <tr><td>O00076: status written as “pending”</td><td>Standardised</td></tr>
+    </table>
+    <p style="margin:4px 0 0;font-size:8.2pt">Suggested fix at source: use dropdowns for IDs and status, and block zero or negative quantities.</p>
+  </div>
+</div>
+
+<footer>Deliverables: analysis.ipynb (Python) · queries.sql (SQLite) · data/cleaned_data.csv · Excel_Dashboard.xlsx · this report. All figures are for Jan–Dec 2025 in INR (L = lakh, Cr = crore).</footer>
+</body>
+</html>
