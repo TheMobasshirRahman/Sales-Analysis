@@ -113,7 +113,7 @@ A one-page summary written for non-technical readers: [`Management_Report.pdf`](
 ├── charts/                   # Charts exported by the notebook
 ├── images/                   # README screenshots
 └── report_src/               # HTML source of the report
-```text
+```
 
 ## How to run
 
